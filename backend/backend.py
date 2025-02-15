@@ -2,17 +2,18 @@ import streamlit as st
 import google.generativeai as genai
 import firebase_admin
 from firebase_admin import credentials, firestore
+import json
 
 # Load Gemini API Key from Streamlit Secrets
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=GEMINI_API_KEY)
 
-# Load Firebase Credentials from Streamlit Secrets (No need for json.loads)
-firebase_creds = st.secrets["FIREBASE_CREDENTIALS"]
+# Convert Firebase Credentials to JSON String and Load it Properly
+firebase_creds_json = json.loads(json.dumps(st.secrets["FIREBASE_CREDENTIALS"]))
 
 # Initialize Firebase if not already initialized
 if not firebase_admin._apps:
-    cred = credentials.Certificate(firebase_creds)
+    cred = credentials.Certificate(firebase_creds_json)
     firebase_admin.initialize_app(cred)
 
 # Firestore Database
