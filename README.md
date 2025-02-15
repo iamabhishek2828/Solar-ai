@@ -57,12 +57,17 @@ streamlit run backend.py
 ```
 
 ## Deployment
+
+### Live Application
+[Click here to access the app](https://solar-ai-7pvz6zcgcjpmmrcbrf9ehq.streamlit.app/)
+
 ### **1. Deploying Frontend on Streamlit Cloud**
 1. Push your code to GitHub.
 2. Go to [Streamlit Cloud](https://share.streamlit.io/).
 3. Click **New App** > Select GitHub Repo.
-4. Add `secrets.toml` in **App Settings**.
-5. Click **Deploy**.
+4. Set `backend/backend.py` as the main file.
+5. Add `secrets.toml` in **App Settings**.
+6. Click **Deploy**.
 
 ### **2. Deploying Backend on Firebase**
 1. Enable Firestore in Firebase Console.
@@ -84,4 +89,5 @@ streamlit run backend.py
 
 ## License
 MIT License
+
 
