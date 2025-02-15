@@ -8,10 +8,10 @@ import json
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=GEMINI_API_KEY)
 
-# 🔍 Load Firebase Credentials & Convert to Dictionary
-firebase_creds = json.loads(st.secrets["FIREBASE_CREDENTIALS"])
+# 🔍 Load Firebase Credentials from secrets
+firebase_creds = dict(st.secrets["firebase"])
 
-# 🔍 Fix private key formatting (Convert \\n to actual newlines)
+# 🔍 Fix private key formatting
 firebase_creds["private_key"] = firebase_creds["private_key"].replace('\\n', '\n')
 
 # 🔥 Initialize Firebase
@@ -43,6 +43,7 @@ if st.button("Get Answer"):
             st.error(f"❌ Error: {str(e)}")
     else:
         st.warning("⚠️ Please enter a question!")
+
 
 
 
